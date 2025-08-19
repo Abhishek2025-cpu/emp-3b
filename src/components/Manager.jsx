@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import QrScanner from "react-qr-scanner"; // ✅ switch to react-qr-scanner
+import React, { useEffect, useState, useRef } from "react";
+import { Html5QrcodeScanner } from "html5-qrcode";
 
 const Manager = () => {
   const [employee, setEmployee] = useState(null);
   const [showScanner, setShowScanner] = useState(false);
   const [scanResult, setScanResult] = useState("");
+  const scannerRef = useRef(null);
 
   useEffect(() => {
     const storedEmployee = localStorage.getItem("employee");
@@ -13,16 +14,32 @@ const Manager = () => {
     }
   }, []);
 
-  const handleScan = (data) => {
-    if (data) {
-      setScanResult(data?.text || data); // capture scan result
-      setShowScanner(false); // close scanner after scan
-    }
-  };
+  useEffect(() => {
+    if (showScanner) {
+      scannerRef.current = new Html5QrcodeScanner(
+        "qr-reader",
+        { fps: 10, qrbox: 250 },
+        false
+      );
 
-  const handleError = (err) => {
-    console.error("QR Scan Error:", err);
-  };
+      scannerRef.current.render(
+        (decodedText) => {
+          setScanResult(decodedText);
+          setShowScanner(false);
+          scannerRef.current.clear();
+        },
+        (error) => {
+          console.warn("QR Scan error:", error);
+        }
+      );
+    }
+
+    return () => {
+      if (scannerRef.current) {
+        scannerRef.current.clear();
+      }
+    };
+  }, [showScanner]);
 
   if (!employee) return <p>Loading Manager Dashboard...</p>;
 
@@ -72,13 +89,7 @@ const Manager = () => {
       {/* Full Screen QR Scanner */}
       {showScanner && (
         <div style={styles.fullScreenScanner}>
-          <QrScanner
-            delay={300}
-            onError={handleError}
-            onScan={handleScan}
-            constraints={{ facingMode: "environment" }}
-            style={{ width: "100%", height: "100%" }}
-          />
+          <div id="qr-reader" style={{ width: "100%", maxWidth: "500px" }}></div>
           <button
             style={styles.closeScannerBtn}
             onClick={() => setShowScanner(false)}
