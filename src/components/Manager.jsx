@@ -15,7 +15,7 @@ const Manager = () => {
 
   const handleScan = (data) => {
     if (data) {
-      setScanResult(data?.text || data); // capture scan result
+      setScanResult(data?.text || data); 
       setShowScanner(false); // close scanner after scan
     }
   };
