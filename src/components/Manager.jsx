@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { QrReader } from "react-qr-reader";
+import QrScanner from "react-qr-scanner"; // ✅ switch to react-qr-scanner
 
 const Manager = () => {
   const [employee, setEmployee] = useState(null);
@@ -15,7 +15,7 @@ const Manager = () => {
 
   const handleScan = (data) => {
     if (data) {
-      setScanResult(data?.text || data); 
+      setScanResult(data?.text || data); // capture scan result
       setShowScanner(false); // close scanner after scan
     }
   };
@@ -72,17 +72,11 @@ const Manager = () => {
       {/* Full Screen QR Scanner */}
       {showScanner && (
         <div style={styles.fullScreenScanner}>
-          <QrReader
-            onResult={(result, error) => {
-              if (!!result) {
-                setScanResult(result?.text);
-                setShowScanner(false);
-              }
-              if (!!error) {
-                console.error(error);
-              }
-            }}
-            constraints={{ facingMode: "environment" }} // use back camera
+          <QrScanner
+            delay={300}
+            onError={handleError}
+            onScan={handleScan}
+            constraints={{ facingMode: "environment" }}
             style={{ width: "100%", height: "100%" }}
           />
           <button
@@ -142,7 +136,6 @@ const styles = {
     boxShadow: "0 6px 12px rgba(0,0,0,0.15)",
   },
 
-  // Fullscreen scanner
   fullScreenScanner: {
     position: "fixed",
     top: 0,
