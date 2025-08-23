@@ -1,11 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
+import TrackOrders from "./TrackOrders";
+import { useNavigate } from "react-router-dom";
 
 const Manager = () => {
   const [employee, setEmployee] = useState(null);
   const [showScanner, setShowScanner] = useState(false);
   const [scanResult, setScanResult] = useState("");
   const scannerRef = useRef(null);
+  const [showTrackOrders, setShowTrackOrders] = useState(false);
+    const navigate = useNavigate();
 
   useEffect(() => {
     const storedEmployee = localStorage.getItem("employee");
@@ -76,7 +80,10 @@ const Manager = () => {
           <p>Tap to Scan</p>
         </div>
 
-        <div style={{ ...styles.card, background: "#B698F7", color: "#fff" }}>
+        <div style={{ ...styles.card, background: "#B698F7", color: "#fff" }}
+        onClick={() => navigate("/inventory-info")}>
+        
+        
           <h3>📦 Inventory</h3>
           <p>20 Items</p>
         </div>
@@ -85,6 +92,12 @@ const Manager = () => {
           <p>8 Pending</p>
         </div>
       </div>
+
+       <div style={{ ...styles.card, background: "#6C47B6", color: "#fff" }}
+         onClick={() => setShowTrackOrders(true)}>
+          <h3>🚚 Track Orders</h3>
+          <p>5 Orders In Transit</p>
+        </div>
 
       {/* Full Screen QR Scanner */}
       {showScanner && (
@@ -106,6 +119,10 @@ const Manager = () => {
           <p>{scanResult}</p>
         </div>
       )}
+       {showTrackOrders && (
+        <TrackOrders onClose={() => setShowTrackOrders(false)} />
+      )}
+
     </div>
   );
 };
@@ -143,6 +160,7 @@ const styles = {
   card: {
     borderRadius: "12px",
     padding: "18px",
+    marginTop: "10px",
     textAlign: "center",
     boxShadow: "0 6px 12px rgba(0,0,0,0.15)",
   },

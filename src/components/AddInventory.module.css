@@ -1,0 +1,434 @@
+/* src/components/AddInventory.module.css */
+
+.pageContainer {
+  padding: 1rem;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background-color: #e9ecef;
+}
+
+.formSection {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+}
+
+.formHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.formHeader i {
+  color: #7853c2;
+}
+
+.formGroup {
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.formLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #495057;
+}
+
+.formLabel i {
+  color: #7853c2;
+}
+
+.formControl,
+.formSelect {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.formControl:focus,
+.formSelect:focus {
+  outline: none;
+  border-color: #7853c2;
+  box-shadow: 0 0 0 3px rgba(120, 83, 194, 0.2);
+}
+
+.formControl::placeholder {
+  color: #adb5bd;
+  font-style: italic;
+}
+
+.formControl:disabled,
+.formSelect:disabled {
+  background-color: #e9ecef !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.loader {
+  position: absolute;
+  right: 12px;
+  top: 42px;
+  font-size: 1.2rem;
+  color: #7853c2;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --- Custom Toggle Switch --- */
+.toggleSwitch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #7853c2;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* --- Submit Button --- */
+.submitButton {
+  width: 100%;
+  padding: 0.85rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: #7853c2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.submitButton:hover {
+  background-color: #6a49a9;
+}
+
+.submitButton:disabled {
+  background-color: #c5b5e6;
+  cursor: not-allowed;
+}
+
+/* src/components/AddShipment.module.css */
+/* Add these new styles to your existing file */
+
+.routePlanner {
+  margin-top: 2rem;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+}
+
+.routeInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Style for the autocomplete input fields */
+.mapInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.mapInput:focus {
+  outline: none;
+  border-color: #6C47B6;
+  box-shadow: 0 0 0 3px rgba(108, 71, 182, 0.25);
+}
+
+.mapContainer {
+  height: 350px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+.routeInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #e9ecef;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.routeInfo span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.clearRouteButton {
+  background: none;
+  border: none;
+  color: #6C47B6;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+/* src/components/AddShipment.module.css */
+
+:root {
+  --primary-color: #6C47B6;
+  --primary-gradient: linear-gradient(90deg, #8E44AD, #6C47B6);
+  --bg-color: #f4f5f7;
+  --card-bg: #ffffff;
+  --text-dark: #212529;
+  --text-light: #6c757d;
+  --border-color: #ced4da;
+  --focus-glow: rgba(108, 71, 182, 0.25);
+}
+
+.pageContainer {
+  padding: 1rem;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+.header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.header h2 svg { color: var(--primary-color); }
+
+.addButton {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+.addButton:hover { background-color: #5a3a9a; }
+.addButton:active { transform: scale(0.98); }
+
+/* --- Main Form Card --- */
+.formSection {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: var(--card-bg);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.07);
+}
+
+.formGroup {
+  margin-bottom: 1.75rem;
+}
+
+.formLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+.formLabel svg { color: var(--text-light); }
+
+.formInput {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  font-size: 1rem;
+  background-color: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px 12px;
+}
+
+.formInput[type="text"] {
+  background-image: none;
+}
+.formInput::placeholder { color: #adb5bd; }
+.formInput:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px var(--focus-glow);
+}
+
+/* Special style for the location inputs to show they are clickable */
+.locationInput {
+  cursor: pointer;
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.locationInput span { color: var(--text-light); }
+
+.submitButton {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+/* --- Map Modal (Full Screen) --- */
+.mapModalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--card-bg);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.mapModalHeader {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+}
+
+.mapModalCloseButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.mapModalInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.mapModalMapContainer {
+  flex-grow: 1;
+  position: relative;
+}
+
+.mapModalFooter {
+  padding: 1rem;
+  background-color: var(--card-bg);
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+/* Other modal styles (for Add Vehicle) remain the same */
